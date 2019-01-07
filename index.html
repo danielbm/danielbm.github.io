@@ -16,7 +16,7 @@
             };
             function startTime() {
                 today = new Date()/1000;
-                first_day = new Date('2019-01-01T00:0:01')/1000;
+                first_day = new Date('2019-01-01T00:00:01')/1000;
                 cur_deficit = (today-first_day)*dps
                 
                 document.getElementById('dfct').innerHTML = formatMoney(cur_deficit);;

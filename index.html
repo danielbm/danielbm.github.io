@@ -1,5 +1,42 @@
 <html>
-  <body>
-    <p> Olar </p>
-  </body>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body onload="startTime()">
+        <h1> Deficitômetro </h1>
+        <p>
+            Déficit da Previdência em 2019 até o momento: <span id="dfct"></span>
+        </p>
+        <p>
+            Esse valor equivale a: <br />
+            <span id="escolas"></span> escolas; <br />
+            <span id="hospitais"></span> hospitais
+        </p>
+    </body>
 </html>
+
+<script>
+    var dps = 308000000000/(365*24*60*60)
+
+    function formatMoney(n, c, d, t) {
+        var c = isNaN(c = Math.abs(c)) ? 2 : c,
+            d = d == undefined ? "." : d,
+            t = t == undefined ? "," : t,
+            s = n < 0 ? "-" : "",
+            i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+            j = (j = i.length) > 3 ? j % 3 : 0;
+
+        return "R$ " + s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+    };
+    function startTime() {
+        today = new Date()/1000;
+        first_day = new Date('2019-01-01T00:0:01')/1000;
+        cur_deficit = (today-first_day)*dps
+        
+        document.getElementById('dfct').innerHTML = formatMoney(cur_deficit);;
+        document.getElementById('escolas').innerHTML = (cur_deficit/5000000).toFixed(0);
+        document.getElementById('hospitais').innerHTML = (cur_deficit/50000000).toFixed(0);
+
+        var t = setTimeout(startTime, 1000);
+    }
+</script>

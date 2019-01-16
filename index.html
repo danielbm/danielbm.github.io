@@ -1,41 +1,146 @@
+<!doctype html>
 <html>
     <head>
         <meta charset="utf-8"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script>
             var dps = 308000000000/(365*24*60*60)
         
             function formatMoney(n, c, d, t) {
                 var c = isNaN(c = Math.abs(c)) ? 2 : c,
-                    d = d == undefined ? "." : d,
-                    t = t == undefined ? "," : t,
+                    d = d == undefined ? "," : d,
+                    t = t == undefined ? "." : t,
                     s = n < 0 ? "-" : "",
                     i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
                     j = (j = i.length) > 3 ? j % 3 : 0;
         
-                return "R$ " + s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+                return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
             };
             function startTime() {
                 today = new Date()/1000;
                 first_day = new Date('2019-01-01T00:00:01')/1000;
                 cur_deficit = (today-first_day)*dps
                 
-                document.getElementById('dfct').innerHTML = formatMoney(cur_deficit);;
-                document.getElementById('escolas').innerHTML = (cur_deficit/5000000).toFixed(0);
-                document.getElementById('hospitais').innerHTML = (cur_deficit/50000000).toFixed(0);
+                document.getElementById('dfct').innerHTML = "R$ "+formatMoney(cur_deficit);;
+                document.getElementById('escolas').innerHTML = formatMoney((cur_deficit/5000000).toFixed(2));
+                document.getElementById('hospitais').innerHTML = formatMoney((cur_deficit/50000000).toFixed(2));
+                document.getElementById('lavajato').innerHTML = formatMoney((cur_deficit/13000000000).toFixed(2));
+                document.getElementById('triplex').innerHTML = formatMoney((cur_deficit/2200000).toFixed(2));
         
                 var t = setTimeout(startTime, 1000);
             }
         </script>
+        <style>
+            body {
+                font-size: 4vw;
+            }
+            .counter {
+                background: #5D523C;
+                border-radius: 4px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.5); 
+                color: #fff;
+                font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            }
+            .counter-inside {
+                margin: 0 1px;
+                padding: 0% .7%;
+                text-align: center;
+                font-weight: bold;
+                font-size: 6vw;
+            }
+            .title {
+                font-size: 6vw;
+                font-family: "Impact";
+                color: #fff;
+                background-color: #34A358;
+                border-radius: 4px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            }
+            .info {
+                background-color: rgb(243, 243, 243);
+                margin-top: 10px;
+                border-radius: 4px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+                padding: 0% .7%;
+                
+            }
+            .equips {
+                display: flex;
+            }
+
+            .equip-column {
+                flex: 1;
+            }
+
+            .equip-item {
+                display: flex;
+            }
+            .equip-item i {
+                flex: 1;
+                text-align: center;
+            }
+            .equip-text {
+                flex: 5;
+            }
+            
+            .equip-text span {
+                color: #34A358;
+            }
+        </style>
     </head>
     <body onload="startTime()">
-        <h1> Deficitômetro </h1>
-        <p>
-            Déficit da Previdência em 2019 até o momento: <span id="dfct"></span>
-        </p>
-        <p>
-            Esse valor equivale a: <br />
-            <span id="escolas"></span> escolas; <br />
-            <span id="hospitais"></span> hospitais
-        </p>
+        <div class="container-fluid">
+            <div class="row" >
+                <div class="col-md-12 text-center">
+                    <p class="title"> DEFICITÔMETRO </p>
+                    <div class="counter">
+                        <p>
+                            Déficit da Previdência em 2019 até o momento: <br />
+                        </p>
+                        <p id="dfct" class="counter-inside"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="info">
+                        <p class="text-left">
+                            Esse valor equivale a: <br />
+                        </p>
+                        <div class="equips">
+                            <div class="equip-column">
+                                <div class="equip-item">
+                                    <i class="fas fa-school"></i>
+                                    <div class="equip-text">
+                                            <span id="escolas"></span> escolas
+                                    </div>
+                                </div>
+                                <div class="equip-item">
+                                    <i class="fas fa-hospital"></i>
+                                    <div class="equip-text">
+                                            <span id="hospitais"></span> hospitais
+                                    </div>
+                                </div>
+                                <div class="equip-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <div class="equip-text">
+                                            <span id="lavajato"></span> vezes o valor recuperado pela lava-jato
+                                    </div>
+                                </div>
+                                <div class="equip-item">
+                                    <i class="fas fa-building"></i>
+                                    <div class="equip-text">
+                                            <span id="triplex"></span> triplex no Guarujá
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

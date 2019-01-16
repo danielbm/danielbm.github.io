@@ -8,6 +8,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script>
             var dps = 308000000000/(365*24*60*60)
+
+            var dps_break = [0.20,0.46,0.19,0.15]
+            var beneficiarios = [19760000,9420000,680000,300000]
+
         
             function formatMoney(n, c, d, t) {
                 var c = isNaN(c = Math.abs(c)) ? 2 : c,
@@ -24,14 +28,22 @@
                 first_day = new Date('2019-01-01T00:00:01')/1000;
                 cur_deficit = (today-first_day)*dps
                 
-                document.getElementById('dfct').innerHTML = "R$ "+formatMoney(cur_deficit);;
+                document.getElementById('dfct').innerHTML = "R$ "+formatMoney(cur_deficit);
+                /*document.getElementById('urbano').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[0]/beneficiarios[0]);
+                document.getElementById('rural').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[1]/beneficiarios[0]);
+                document.getElementById('servidores').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[2]/beneficiarios[0]);
+                document.getElementById('militar').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[3]/beneficiarios[0]);*/
                 document.getElementById('escolas').innerHTML = formatMoney((cur_deficit/1900000).toFixed(2),0);
                 document.getElementById('hospitais').innerHTML = formatMoney((cur_deficit/300000).toFixed(2),0);
                 document.getElementById('lavajato').innerHTML = formatMoney((cur_deficit/13000000000).toFixed(2));
+                document.getElementById('policia').innerHTML = formatMoney((cur_deficit/7000000000).toFixed(2));
                 document.getElementById('triplex').innerHTML = formatMoney((cur_deficit/2200000).toFixed(2),0);
                 document.getElementById('queiroz').innerHTML = formatMoney((cur_deficit/1200000).toFixed(2));
                 document.getElementById('ciencia').innerHTML = formatMoney((cur_deficit/3750000000).toFixed(2));
                 document.getElementById('bolsafamilia').innerHTML = formatMoney((cur_deficit/30000000000).toFixed(2));
+                document.getElementById('metro').innerHTML = formatMoney((cur_deficit/1000000000).toFixed(2),0);
+                document.getElementById('copa').innerHTML = formatMoney((cur_deficit/25500000000).toFixed(2));
+                document.getElementById('olimpiadas').innerHTML = formatMoney((cur_deficit/40000000000).toFixed(2));
         
                 var t = setTimeout(startTime, 1000);
             }
@@ -46,14 +58,25 @@
                 box-shadow: 0 2px 5px rgba(0,0,0,0.5); 
                 color: #fff;
                 font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+                margin-bottom: 10px;
+                margin-top: 10px;
             }
             .counter-inside {
                 margin: 0 1px;
                 padding: 0% .7%;
                 text-align: center;
                 font-weight: bold;
-                font-size: 6vw;
+                font-size: 7vw;
             }
+
+            .counter-small {
+                margin: 0 1px;
+                padding: 0% .7%;
+                text-align: left;
+                font-weight: bold;
+                font-size: 3vw;
+            }
+
             .title {
                 font-size: 6vw;
                 font-family: "Impact";
@@ -61,10 +84,11 @@
                 background-color: #34A358;
                 border-radius: 4px;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+                margin-top: 10px;
+                margin-bottom: 0px;
             }
             .info {
                 background-color: rgb(243, 243, 243);
-                margin-top: 10px;
                 border-radius: 4px;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.5);
                 padding: 0% .7%;
@@ -80,6 +104,7 @@
 
             .equip-item {
                 display: flex;
+                align-items: center;
             }
             .equip-item i {
                 flex: 1;
@@ -101,7 +126,7 @@
                     <p class="title"> DEFICITÔMETRO </p>
                     <div class="counter">
                         <p>
-                            Déficit da Previdência em 2019 até o momento: <br />
+                            Déficit da Previdência em 2019 até agora: <br />
                         </p>
                         <p id="dfct" class="counter-inside"></p>
                     </div>
@@ -130,7 +155,13 @@
                                 <div class="equip-item">
                                     <i class="fas fa-dollar-sign"></i>
                                     <div class="equip-text">
-                                            <span id="lavajato"></span> vezes o valor recuperado pela lava-jato
+                                            <span id="lavajato"></span> vezes o valor recuperado pela Lava-Jato
+                                    </div>
+                                </div>
+                                <div class="equip-item">
+                                    <i class="fas fa-user-ninja"></i>
+                                    <div class="equip-text">
+                                        <span id="policia"></span> vezes o orçamento da Polícia Federal
                                     </div>
                                 </div>
                                 <div class="equip-item">
@@ -157,11 +188,42 @@
                                         <span id="bolsafamilia"></span> vezes o orçamento do Bolsa Família
                                     </div>
                                 </div>
+                                <div class="equip-item">
+                                    <i class="fas fa-subway"></i>
+                                    <div class="equip-text">
+                                        <span id="metro"></span> quilômetros de metrô
+                                    </div>
+                                </div>
+                                <div class="equip-item">
+                                    <i class="fas fa-futbol"></i>
+                                    <div class="equip-text">
+                                        <span id="copa"></span> vezes o gasto com a Copa de 2014
+                                    </div>
+                                </div>
+                                <div class="equip-item">
+                                    <i class="fas fa-running"></i>
+                                    <div class="equip-text">
+                                        <span id="olimpiadas"></span> vezes o gasto com as Olimpíadas do Rio
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- div class="row" >
+                <div class="col-md-12">
+                    <div class="counter">
+                        <div class="counter-small">
+                            Déficit por setor: <br />
+                            Trabalhadores urbanos: <span id="urbano"></span> por beneficiado <br />
+                            Trabalhadores rurais<span id="rural"></span> por beneficiado <br />
+                            Servidores públicos: <span id="servidores"></span> por beneficiado <br />
+                            Militares: <span id="militar"></span> por beneficiado
+                        </div>
+                    </div>
+                </div>
+            </div -->
         </div>
     </body>
 </html>

@@ -25,10 +25,13 @@
                 cur_deficit = (today-first_day)*dps
                 
                 document.getElementById('dfct').innerHTML = "R$ "+formatMoney(cur_deficit);;
-                document.getElementById('escolas').innerHTML = formatMoney((cur_deficit/5000000).toFixed(2));
-                document.getElementById('hospitais').innerHTML = formatMoney((cur_deficit/50000000).toFixed(2));
+                document.getElementById('escolas').innerHTML = formatMoney((cur_deficit/1900000).toFixed(2),0);
+                document.getElementById('hospitais').innerHTML = formatMoney((cur_deficit/300000).toFixed(2),0);
                 document.getElementById('lavajato').innerHTML = formatMoney((cur_deficit/13000000000).toFixed(2));
-                document.getElementById('triplex').innerHTML = formatMoney((cur_deficit/2200000).toFixed(2));
+                document.getElementById('triplex').innerHTML = formatMoney((cur_deficit/2200000).toFixed(2),0);
+                document.getElementById('queiroz').innerHTML = formatMoney((cur_deficit/1200000).toFixed(2));
+                document.getElementById('ciencia').innerHTML = formatMoney((cur_deficit/3750000000).toFixed(2));
+                document.getElementById('bolsafamilia').innerHTML = formatMoney((cur_deficit/30000000000).toFixed(2));
         
                 var t = setTimeout(startTime, 1000);
             }
@@ -121,7 +124,7 @@
                                 <div class="equip-item">
                                     <i class="fas fa-hospital"></i>
                                     <div class="equip-text">
-                                            <span id="hospitais"></span> hospitais
+                                            <span id="hospitais"></span> Unidades Básicas de Saúde
                                     </div>
                                 </div>
                                 <div class="equip-item">
@@ -134,6 +137,24 @@
                                     <i class="fas fa-building"></i>
                                     <div class="equip-text">
                                             <span id="triplex"></span> triplex no Guarujá
+                                    </div>
+                                </div>
+                                <div class="equip-item">
+                                    <i class="fas fa-car"></i>
+                                    <div class="equip-text">
+                                        <span id="queiroz"></span> vezes o valor movimentado por Fabrício Queiroz
+                                    </div>
+                                </div>
+                                <div class="equip-item">
+                                    <i class="fas fa-flask"></i>
+                                    <div class="equip-text">
+                                        <span id="ciencia"></span> vezes o orçamento do Ministério da Ciência e Tecnologia
+                                    </div>
+                                </div>
+                                <div class="equip-item">
+                                    <i class="fas fa-heart"></i>
+                                    <div class="equip-text">
+                                        <span id="bolsafamilia"></span> vezes o orçamento do Bolsa Família
                                     </div>
                                 </div>
                             </div>

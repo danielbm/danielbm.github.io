@@ -1,3 +1,4 @@
+<!-- Este site foi feito em um dia, sem nenhum apreço pelas boas práticas de programação. Favor não me julgar. -->
 <!doctype html>
 <html>
     <head>
@@ -6,6 +7,19 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDL1Kn447gfAlcb-rfdOSZJ0HgZaLJxLyI",
+                authDomain: "deficitometro.firebaseapp.com",
+                databaseURL: "https://deficitometro.firebaseio.com",
+                projectId: "deficitometro",
+                storageBucket: "",
+                messagingSenderId: "556458278908"
+            };
+            firebase.initializeApp(config);
+        </script>
         <script>
             var dps = 308000000000/(365*24*60*60)
 
@@ -33,13 +47,15 @@
                 document.getElementById('rural').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[1]/beneficiarios[0]);
                 document.getElementById('servidores').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[2]/beneficiarios[0]);
                 document.getElementById('militar').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[3]/beneficiarios[0]);*/
-                document.getElementById('escolas').innerHTML = formatMoney((cur_deficit/1900000).toFixed(2),0);
-                document.getElementById('hospitais').innerHTML = formatMoney((cur_deficit/300000).toFixed(2),0);
+                document.getElementById('escolas').innerHTML = formatMoney((cur_deficit/2523600).toFixed(2),0);
+                document.getElementById('hospitais').innerHTML = formatMoney((cur_deficit/1424792).toFixed(2),0);
+                document.getElementById('saneamento').innerHTML = formatMoney((cur_deficit/15000000000).toFixed(2));
+                document.getElementById('saneamento2').innerHTML = formatMoney((cur_deficit/458000000).toFixed(2));
                 document.getElementById('lavajato').innerHTML = formatMoney((cur_deficit/13000000000).toFixed(2));
-                document.getElementById('policia').innerHTML = formatMoney((cur_deficit/7000000000).toFixed(2));
+                document.getElementById('policia').innerHTML = formatMoney((cur_deficit/5300000000).toFixed(2));
                 document.getElementById('triplex').innerHTML = formatMoney((cur_deficit/2200000).toFixed(2),0);
                 document.getElementById('queiroz').innerHTML = formatMoney((cur_deficit/1200000).toFixed(2));
-                document.getElementById('ciencia').innerHTML = formatMoney((cur_deficit/3750000000).toFixed(2));
+                document.getElementById('ciencia').innerHTML = formatMoney((cur_deficit/7500000000).toFixed(2));
                 document.getElementById('bolsafamilia').innerHTML = formatMoney((cur_deficit/30000000000).toFixed(2));
                 document.getElementById('metro').innerHTML = formatMoney((cur_deficit/1000000000).toFixed(2),0);
                 document.getElementById('copa').innerHTML = formatMoney((cur_deficit/25500000000).toFixed(2));
@@ -92,7 +108,15 @@
                 border-radius: 4px;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.5);
                 padding: 0% .7%;
-                
+                margin-bottom: 10px;
+            }
+            .refs {
+                background-color: rgb(243, 243, 243);
+                border-radius: 4px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+                font-size: 2.5vw;
+                list-style-position:inside;
+                padding: 0% .7%;
             }
             .equips {
                 display: flex;
@@ -153,6 +177,18 @@
                                     </div>
                                 </div>
                                 <div class="equip-item">
+                                    <i class="fas fa-toilet"></i>
+                                    <div class="equip-text">
+                                            <span id="saneamento"></span> vezes o investimento anual necessário para universalizar o saneamento básico.
+                                    </div>
+                                </div>
+                                <div class="equip-item">
+                                    <i class="fas fa-poo"></i>
+                                    <div class="equip-text">
+                                            <span id="saneamento2"></span> vezes o orçamento anual previsto para saneamento básico.
+                                    </div>
+                                </div>
+                                <div class="equip-item">
                                     <i class="fas fa-dollar-sign"></i>
                                     <div class="equip-text">
                                             <span id="lavajato"></span> vezes o valor recuperado pela Lava-Jato
@@ -161,7 +197,7 @@
                                 <div class="equip-item">
                                     <i class="fas fa-user-ninja"></i>
                                     <div class="equip-text">
-                                        <span id="policia"></span> vezes o orçamento da Polícia Federal
+                                        <span id="policia"></span> vezes o orçamento anual da Polícia Federal
                                     </div>
                                 </div>
                                 <div class="equip-item">
@@ -179,13 +215,13 @@
                                 <div class="equip-item">
                                     <i class="fas fa-flask"></i>
                                     <div class="equip-text">
-                                        <span id="ciencia"></span> vezes o orçamento do Ministério da Ciência e Tecnologia
+                                        <span id="ciencia"></span> vezes o orçamento anual para Ciência e Tecnologia
                                     </div>
                                 </div>
                                 <div class="equip-item">
                                     <i class="fas fa-heart"></i>
                                     <div class="equip-text">
-                                        <span id="bolsafamilia"></span> vezes o orçamento do Bolsa Família
+                                        <span id="bolsafamilia"></span> vezes o orçamento anual do Bolsa Família
                                     </div>
                                 </div>
                                 <div class="equip-item">
@@ -208,6 +244,26 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-md-12">
+                    <div class="refs">    
+                        <p> Referências: </p>
+                        <ol>
+                            <li><a href="http://www.camara.leg.br/internet/comissao/index/mista/orca/orcamento/OR2019/proposta/MensagemPres.pdf">http://www.camara.leg.br/internet/comissao/index/mista/orca/orcamento/OR2019/proposta/MensagemPres.pdf</a></li>
+                            <li><a href="http://www.fumec.br/revistas/eol/article/download/3862/2133">http://www.fumec.br/revistas/eol/article/download/3862/2133</a></li>
+                            <li><a href="https://app.uff.br/riuff/handle/1/5073">https://app.uff.br/riuff/handle/1/5073</a></li>
+                            <li><a href="http://www.tratabrasil.org.br/uploads/estudo-investimentos-em-saneamento-com-recursos-do-fgts.pdf">http://www.tratabrasil.org.br/uploads/estudo-investimentos-em-saneamento-com-recursos-do-fgts.pdf</a></li>
+                            <li><a href="https://g1.globo.com/economia/noticia/2018/09/16/previdencia-consumira-em-2019-tres-vezes-mais-recursos-que-saude-educacao-e-seguranca-juntos-preve-governo.ghtml">https://g1.globo.com/economia/noticia/2018/09/16/previdencia-consumira-em-2019-tres-vezes-mais-recursos-que-saude-educacao-e-seguranca-juntos-preve-governo.ghtml</a></li>
+                            <li><a href="https://www.bbc.com/portuguese/brasil-43432053">https://www.bbc.com/portuguese/brasil-43432053</a></li>
+                            <li><a href="https://g1.globo.com/pr/parana/noticia/triplex-no-guaruja-atribuido-pelo-mpf-ao-ex-presidente-lula-foi-avaliado-em-r-22-milhoes.ghtml">https://g1.globo.com/pr/parana/noticia/triplex-no-guaruja-atribuido-pelo-mpf-ao-ex-presidente-lula-foi-avaliado-em-r-22-milhoes.ghtml</a></li>
+                            <li><a href="https://www.valor.com.br/politica/6039361/fabricio-queiroz-diz-que-movimentacao-atipica-vem-de-revenda-de-carros">https://www.valor.com.br/politica/6039361/fabricio-queiroz-diz-que-movimentacao-atipica-vem-de-revenda-de-carros</a></li>
+                            <li><a href="https://portogente.com.br/noticias/dia-a-dia/87157-qual-e-o-custo-dos-metros">https://portogente.com.br/noticias/dia-a-dia/87157-qual-e-o-custo-dos-metros</a></li>
+                            <li><a href="http://agenciabrasil.ebc.com.br/geral/noticia/2014-12/tcu-contabiliza-r-255-bilhoes-de-gastos-com-copa-do-mundo">http://agenciabrasil.ebc.com.br/geral/noticia/2014-12/tcu-contabiliza-r-255-bilhoes-de-gastos-com-copa-do-mundo</a></li>
+                            <li><a href="https://globoesporte.globo.com/olimpiadas/noticia/custo-dos-jogos-olimpicos-do-rio-e-atualizado-e-chega-a-r-41-bilhoes.ghtml">https://globoesporte.globo.com/olimpiadas/noticia/custo-dos-jogos-olimpicos-do-rio-e-atualizado-e-chega-a-r-41-bilhoes.ghtml</a></li>
+                        </ol>
                     </div>
                 </div>
             </div>

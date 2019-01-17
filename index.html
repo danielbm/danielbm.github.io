@@ -40,7 +40,7 @@
             var dps_break = [0.20,0.46,0.19,0.15]
             var beneficiarios = [19760000,9420000,680000,300000]
 
-        
+
             function formatMoney(n, c, d, t) {
                 var c = isNaN(c = Math.abs(c)) ? 2 : c,
                     d = d == undefined ? "," : d,
@@ -48,14 +48,14 @@
                     s = n < 0 ? "-" : "",
                     i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
                     j = (j = i.length) > 3 ? j % 3 : 0;
-        
+
                 return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
             };
             function startTime() {
                 today = new Date()/1000;
                 first_day = new Date('2019-01-01T00:00:01')/1000;
                 cur_deficit = (today-first_day)*dps
-                
+
                 document.getElementById('dfct').innerHTML = "R$ "+formatMoney(cur_deficit);
                 document.getElementById('urbano').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[0]);
                 document.getElementById('rural').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[1]);
@@ -80,7 +80,7 @@
                 document.getElementById('olimpiadas').innerHTML = formatMoney((cur_deficit/40000000000).toFixed(2));
                 document.getElementById('arrascaeta').innerHTML = formatMoney((cur_deficit/76000000).toFixed(2),0);
                 document.getElementById('megasena').innerHTML = formatMoney((cur_deficit/302500000).toFixed(2),0);
-        
+
                 var t = setTimeout(startTime, 1000);
             }
         </script>
@@ -91,7 +91,7 @@
             .counter {
                 background: #5D523C;
                 border-radius: 4px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.5); 
+                box-shadow: 0 2px 5px rgba(0,0,0,0.5);
                 color: #fff;
                 font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
                 margin-bottom: 10px;
@@ -148,6 +148,14 @@
                 padding: 0% .7%;
                 word-break: break-all;
             }
+            .method {
+                background-color: rgb(243, 243, 243);
+                border-radius: 4px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+                font-size: 2.5vw;
+                padding: 0% 5%;
+                text-align: justify;
+            }
             .equips {
                 display: flex;
             }
@@ -167,7 +175,7 @@
             .equip-text {
                 flex: 5;
             }
-            
+
             .equip-text span {
                 color: #34A358;
             }
@@ -304,14 +312,14 @@
                     <div class="counter">
                         <div class="counter-small">
                             <div>
-                                <p>Déficit segmentado por setor: </p>    
+                                <p>Déficit segmentado por setor: </p>
                             </div>
                             <div class="dfct-row">
                                 <div class="dfct-column">
                                     Trabalhadores urbanos: <br /> <span id="urbano"></span>
                                 </div>
                                 <div class="dfct-column">
-                                    Trabalhadores rurais: <br /> <span id="rural"></span> 
+                                    Trabalhadores rurais: <br /> <span id="rural"></span>
                                 </div>
                             </div>
                             <div class="dfct-row">
@@ -331,28 +339,28 @@
                     <div class="counter">
                         <div class="counter-small-percapita">
                             <div>
-                                <p>Déficit segmentado por setor, por beneficiado: </p>    
+                                <p>Déficit segmentado por setor, por beneficiado: </p>
                             </div>
                             <div class="dfct-row">
                                 <div class="dfct-column">
-                                    Trabalhadores urbanos: <br /> 
+                                    Trabalhadores urbanos: <br />
                                     <span id="urbanopercapita"></span> <br/>
                                     (19,7 milhões de beneficiados)
                                 </div>
                                 <div class="dfct-column">
-                                    Trabalhadores rurais: <br /> 
+                                    Trabalhadores rurais: <br />
                                     <span id="ruralpercapita"></span> <br />
                                     (9,4 milhões de beneficiados)
                                 </div>
                             </div>
                             <div class="dfct-row">
                                 <div class="dfct-column">
-                                    Servidores públicos:  <br /> 
+                                    Servidores públicos:  <br />
                                     <span id="servidorespercapita"></span> <br />
                                     (680 mil beneficiados)
                                 </div>
                                 <div class="dfct-column">
-                                    Militares:  <br /> 
+                                    Militares:  <br />
                                     <span id="militarpercapita"></span> <br />
                                     (300 mil beneficiados)
                                 </div>
@@ -363,7 +371,7 @@
             </div>
             <div class="row" >
                 <div class="col-md-12">
-                    <div class="refs">    
+                    <div class="refs">
                         <p> Referências: </p>
                         <ol>
                             <li><a href="http://www.camara.leg.br/internet/comissao/index/mista/orca/orcamento/OR2019/proposta/MensagemPres.pdf">http://www.camara.leg.br/internet/comissao/index/mista/orca/orcamento/OR2019/proposta/MensagemPres.pdf</a></li>
@@ -381,6 +389,14 @@
                             <li><a href="https://globoesporte.globo.com/futebol/times/cruzeiro/noticia/alem-de-recorde-no-mercado-brasileiro-venda-de-arrascaeta-e-a-maior-da-historia-do-cruzeiro.ghtml">https://globoesporte.globo.com/futebol/times/cruzeiro/noticia/alem-de-recorde-no-mercado-brasileiro-venda-de-arrascaeta-e-a-maior-da-historia-do-cruzeiro.ghtml</a></li>
                             <li><a href="https://g1.globo.com/loterias/ao-vivo/sorteio-mega-sena-da-virada-2018.ghtml">https://g1.globo.com/loterias/ao-vivo/sorteio-mega-sena-da-virada-2018.ghtml</a></li>
                         </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-md-12">
+                    <div class="method">
+                        <p> Metodologia: </p>
+                        <p> O déficit calculado é o valor do déficit estimado na LOA [1], proporcional ao número de segundos transcorridos. Já a segmentação é proporcional aos valores do relatório do IFI [2]. O restante dos valores advém das referências [3] a [14] </p>
                     </div>
                 </div>
             </div>

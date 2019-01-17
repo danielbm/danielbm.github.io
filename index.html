@@ -57,10 +57,14 @@
                 cur_deficit = (today-first_day)*dps
                 
                 document.getElementById('dfct').innerHTML = "R$ "+formatMoney(cur_deficit);
-                document.getElementById('urbano').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[0]/beneficiarios[0]);
-                document.getElementById('rural').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[1]/beneficiarios[1]);
-                document.getElementById('servidores').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[2]/beneficiarios[2]);
-                document.getElementById('militar').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[3]/beneficiarios[3]);
+                document.getElementById('urbano').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[0]);
+                document.getElementById('rural').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[1]);
+                document.getElementById('servidores').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[2]);
+                document.getElementById('militar').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[3]);
+                document.getElementById('urbanopercapita').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[0]/beneficiarios[0]);
+                document.getElementById('ruralpercapita').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[1]/beneficiarios[1]);
+                document.getElementById('servidorespercapita').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[2]/beneficiarios[2]);
+                document.getElementById('militarpercapita').innerHTML = "R$ "+formatMoney(cur_deficit*dps_break[3]/beneficiarios[3]);
                 document.getElementById('escolas').innerHTML = formatMoney((cur_deficit/2523600).toFixed(2),0);
                 document.getElementById('hospitais').innerHTML = formatMoney((cur_deficit/1424792).toFixed(2),0);
                 document.getElementById('saneamento').innerHTML = formatMoney((cur_deficit/15000000000).toFixed(2));
@@ -89,7 +93,6 @@
                 color: #fff;
                 font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
                 margin-bottom: 10px;
-                margin-top: 10px;
             }
             .counter-inside {
                 margin: 0 1px;
@@ -108,6 +111,15 @@
                 background-color: #34A358;
             }
 
+            .counter-small-percapita {
+                margin: 0 1px;
+                padding: 0% .7%;
+                text-align: left;
+                font-weight: bold;
+                font-size: 3vw;
+                background-color: #5D523C;
+            }
+
             .title {
                 font-size: 6vw;
                 font-family: "Impact";
@@ -116,13 +128,14 @@
                 border-radius: 4px;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.5);
                 margin-top: 10px;
-                margin-bottom: 0px;
+                margin-bottom: 10px;
             }
             .info {
                 background-color: rgb(243, 243, 243);
                 border-radius: 4px;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.5);
                 padding: 0% .7%;
+                margin-bottom: 10px;
             }
             .refs {
                 background-color: rgb(243, 243, 243);
@@ -277,7 +290,7 @@
                     <div class="counter">
                         <div class="counter-small">
                             <div>
-                                <p>Déficit segmentado por setor, por beneficiado: </p>    
+                                <p>Déficit segmentado por setor: </p>    
                             </div>
                             <div class="dfct-row">
                                 <div class="dfct-column">
@@ -293,6 +306,41 @@
                                 </div>
                                 <div class="dfct-column">
                                     Militares:  <br /> <span id="militar"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-md-12">
+                    <div class="counter">
+                        <div class="counter-small-percapita">
+                            <div>
+                                <p>Déficit segmentado por setor, por beneficiado: </p>    
+                            </div>
+                            <div class="dfct-row">
+                                <div class="dfct-column">
+                                    Trabalhadores urbanos: <br /> 
+                                    <span id="urbanopercapita"></span> <br/>
+                                    (19,7 milhões de beneficiados)
+                                </div>
+                                <div class="dfct-column">
+                                    Trabalhadores rurais: <br /> 
+                                    <span id="ruralpercapita"></span> <br />
+                                    (9,4 milhões de beneficiados)
+                                </div>
+                            </div>
+                            <div class="dfct-row">
+                                <div class="dfct-column">
+                                    Servidores públicos:  <br /> 
+                                    <span id="servidorespercapita"></span> <br />
+                                    (680 mil beneficiados)
+                                </div>
+                                <div class="dfct-column">
+                                    Militares:  <br /> 
+                                    <span id="militarpercapita"></span> <br />
+                                    (300 mil beneficiados)
                                 </div>
                             </div>
                         </div>

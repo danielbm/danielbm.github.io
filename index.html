@@ -86,40 +86,35 @@
         </script>
         <style>
             body {
-                font-size: 4vw;
+                font-size: 2.5vw;
             }
             .counter {
-                background: #5D523C;
+                background: #30748B;
                 border-radius: 4px;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.5);
                 color: #fff;
                 font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
                 margin-bottom: 10px;
+                font-size: 3.5vw;
             }
             .counter-inside {
                 margin: 0 1px;
                 padding: 0% .7%;
                 text-align: center;
                 font-weight: bold;
-                font-size: 7vw;
+                font-size: 5vw;
             }
 
             .counter-small {
                 margin: 0 1px;
                 padding: 0% .7%;
                 text-align: left;
-                font-weight: bold;
-                font-size: 3vw;
                 background-color: #34A358;
+                font-size: 2.5vw;
             }
 
-            .counter-small-percapita {
-                margin: 0 1px;
-                padding: 0% .7%;
-                text-align: left;
-                font-weight: bold;
-                font-size: 3vw;
-                background-color: #5D523C;
+            .percapita {
+                background-color: #30748B;
             }
 
             .title {
@@ -143,17 +138,21 @@
                 background-color: rgb(243, 243, 243);
                 border-radius: 4px;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-                font-size: 2.5vw;
+                font-size: 2vw;
                 list-style-position:inside;
                 padding: 0% .7%;
                 word-break: break-all;
+            }
+
+            .refs ol {
+                padding: 0% .7%;
             }
             .method {
                 background-color: rgb(243, 243, 243);
                 border-radius: 4px;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-                font-size: 2.5vw;
-                padding: 0% 5%;
+                font-size: 2vw;
+                padding: 0% .7%;
                 text-align: justify;
             }
             .equips {
@@ -173,7 +172,7 @@
                 text-align: center;
             }
             .equip-text {
-                flex: 5;
+                flex: 6;
             }
 
             .equip-text span {
@@ -182,19 +181,45 @@
 
             .dfct-row {
                 display: flex;
+                align-items: center;
+                margin: 1% 0%;
+            }
+
+            .dfct-row i {
+                flex: 1;
                 text-align: center;
-                padding: 2% .7%;
+            }
+
+            .dfct-text {
+                flex: 6;
             }
 
             .dfct-column {
                 flex: 1;
             }
+
+            .chart {
+                background-color: rgb(255, 255, 255);
+                border-radius: 4px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+                margin-bottom: 10px;
+                padding: 0% .7%;
+                text-align: left;
+                font-size: 2.5vw;
+            }
+
+            .chart img {
+                max-width: 100%;
+                height: auto;
+            }
+
         </style>
     </head>
     <body onload="startTime()">
         <div class="container-fluid">
             <div class="row" >
-                <div class="col-md-12 text-center">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 text-center">
                     <p class="title"> DEFICITÔMETRO </p>
                     <div class="counter">
                         <p>
@@ -203,12 +228,14 @@
                         <p id="dfct" class="counter-inside"></p>
                     </div>
                 </div>
+                <div class="col-md-1"></div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
                     <div class="info">
                         <p class="text-left">
-                            Esse valor equivale a: <br />
+                            Este valor equivale a: <br />
                         </p>
                         <div class="equips">
                             <div class="equip-column">
@@ -306,76 +333,134 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-1"></div>
             </div>
             <div class="row" >
-                <div class="col-md-12">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
                     <div class="counter">
                         <div class="counter-small">
                             <div>
                                 <p>Déficit segmentado por setor: </p>
                             </div>
-                            <div class="dfct-row">
-                                <div class="dfct-column">
-                                    Trabalhadores urbanos: <br /> <span id="urbano"></span>
+                            <div class="dfct-column">
+                                <div class="dfct-row">
+                                    <i class="fas fa-city"></i>
+                                    <div class="dfct-text">
+                                        Trabalhadores urbanos:
+                                        <span id="urbano"></span>
+                                    </div>
                                 </div>
-                                <div class="dfct-column">
-                                    Trabalhadores rurais: <br /> <span id="rural"></span>
+                                <div class="dfct-row">
+                                    <i class="fas fa-tree"></i>
+                                    <div class="dfct-text">
+                                        Trabalhadores rurais:
+                                        <span id="rural"></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="dfct-row">
-                                <div class="dfct-column">
-                                    Servidores públicos:  <br /> <span id="servidores"></span>
+
+                                <div class="dfct-row">
+                                    <i class="fas fa-stamp"></i>
+                                    <div class="dfct-text">
+                                        Servidores públicos:
+                                        <span id="servidores"></span>
+                                    </div>
                                 </div>
-                                <div class="dfct-column">
-                                    Militares:  <br /> <span id="militar"></span>
+                                <div class="dfct-row">
+                                    <i class="fas fa-fighter-jet"></i>
+                                    <div class="dfct-text">
+                                        Militares: <span id="militar"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-1"></div>
             </div>
             <div class="row" >
-                <div class="col-md-12">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
                     <div class="counter">
-                        <div class="counter-small-percapita">
+                        <div class="counter-small percapita">
                             <div>
                                 <p>Déficit segmentado por setor, por beneficiado: </p>
                             </div>
-                            <div class="dfct-row">
-                                <div class="dfct-column">
-                                    Trabalhadores urbanos: <br />
-                                    <span id="urbanopercapita"></span> <br/>
-                                    (19,7 milhões de beneficiados)
+                            <div class="dfct-column">
+                                <div class="dfct-row">
+                                    <i class="fas fa-city"></i>
+                                    <div class="dfct-text">
+                                        Trabalhadores urbanos:
+                                        <span id="urbanopercapita"></span> <br />
+                                        19,7 milhões de beneficiados
+                                    </div>
                                 </div>
-                                <div class="dfct-column">
-                                    Trabalhadores rurais: <br />
-                                    <span id="ruralpercapita"></span> <br />
-                                    (9,4 milhões de beneficiados)
+                                <div class="dfct-row">
+                                    <i class="fas fa-tree"></i>
+                                    <div class="dfct-text">
+                                        Trabalhadores rurais:
+                                        <span id="ruralpercapita"></span> <br />
+                                        9,4 milhões de beneficiados
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="dfct-row">
-                                <div class="dfct-column">
-                                    Servidores públicos:  <br />
-                                    <span id="servidorespercapita"></span> <br />
-                                    (680 mil beneficiados)
+                                <div class="dfct-row">
+                                    <i class="fas fa-stamp"></i>
+                                    <div class="dfct-text">
+                                        Servidores públicos:
+                                        <span id="servidorespercapita"></span> <br />
+                                        680 mil beneficiados
+                                    </div>
                                 </div>
-                                <div class="dfct-column">
-                                    Militares:  <br />
-                                    <span id="militarpercapita"></span> <br />
-                                    (300 mil beneficiados)
+                                <div class="dfct-row">
+                                    <i class="fas fa-fighter-jet"></i>
+                                    <div class="dfct-text">
+                                        Militares:
+                                        <span id="militarpercapita"></span> <br />
+                                        300 mil beneficiados
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-1"></div>
             </div>
             <div class="row" >
-                <div class="col-md-12">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="text-center chart">
+                        <p> Despesa previdenciária versus idade da população em 86 países:</p>
+                        <img class="img-fluid" src="file:///C:/Users/d816834/Desktop/prevvsidade.PNG" />
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class="row" >
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="info">
+                        <p> Expectativa de sobrevida aos 60 anos, por região: </p>
+                        <ul>
+                            <li>Centro-oeste: 21,47</li>
+                            <li>Nordeste: 20,85</li>
+                            <li>Norte: 20,22</li>
+                            <li>Sudeste: 22,56</li>
+                            <li>Sul: 22,57</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class="row" >
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
                     <div class="refs">
                         <p> Referências: </p>
                         <ol>
                             <li><a href="http://www.camara.leg.br/internet/comissao/index/mista/orca/orcamento/OR2019/proposta/MensagemPres.pdf">http://www.camara.leg.br/internet/comissao/index/mista/orca/orcamento/OR2019/proposta/MensagemPres.pdf</a></li>
                             <li><a href="http://www2.senado.leg.br/bdsf/bitstream/handle/id/529485/RAF_2_Box.pdf">http://www2.senado.leg.br/bdsf/bitstream/handle/id/529485/RAF_2_Box.pdf</a></li>
+                            <li><a href="http://downloads.fipe.org.br/content/downloads/publicacoes/bif/bif423-11-16a.pdf">http://downloads.fipe.org.br/content/downloads/publicacoes/bif/bif423-11-16a.pdf</a></li>
+                            <li><a href="http://repositorio.ipea.gov.br/bitstream/11058/7271/1/NT_n29_Disoc.pdf">http://repositorio.ipea.gov.br/bitstream/11058/7271/1/NT_n29_Disoc.pdf</a></li>
                             <li><a href="http://www.fumec.br/revistas/eol/article/download/3862/2133">http://www.fumec.br/revistas/eol/article/download/3862/2133</a></li>
                             <li><a href="https://app.uff.br/riuff/handle/1/5073">https://app.uff.br/riuff/handle/1/5073</a></li>
                             <li><a href="http://www.tratabrasil.org.br/uploads/estudo-investimentos-em-saneamento-com-recursos-do-fgts.pdf">http://www.tratabrasil.org.br/uploads/estudo-investimentos-em-saneamento-com-recursos-do-fgts.pdf</a></li>
@@ -391,14 +476,17 @@
                         </ol>
                     </div>
                 </div>
+                <div class="col-md-1"></div>
             </div>
             <div class="row" >
-                <div class="col-md-12">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
                     <div class="method">
                         <p> Metodologia: </p>
-                        <p> O déficit calculado é o valor do déficit estimado na LOA [1], proporcional ao número de segundos transcorridos. Já a segmentação é proporcional aos valores do relatório do IFI [2]. O restante dos valores advém das referências [3] a [14] </p>
+                        <p> O déficit calculado é o valor do déficit estimado na LOA [1], proporcional ao número de segundos transcorridos. Já a segmentação é proporcional aos valores do relatório do IFI [2]. O restante dos valores advém das referências [3] a [16] </p>
                     </div>
                 </div>
+                <div class="col-md-1"></div>
             </div>
         </div>
     </body>
